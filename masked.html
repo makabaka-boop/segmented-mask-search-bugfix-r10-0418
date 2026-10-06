@@ -1,0 +1,7 @@
+<!doctype html><meta charset="utf-8"><title>掩码字节查找</title>
+<h1>掩码字节查找</h1><p>编辑快照字节，按半字节通配模式查询指定范围。</p>
+<label>快照字节 <textarea id="bytes">AF 01 A2 AF 09 A2</textarea></label>
+<label>模式 <input id="pattern" value="A? ?? A2"></label>
+<label>起点 <input id="start" value="0" type="number"></label>
+<label>终点 <input id="end" value="6" type="number"></label>
+<button id="search">查找</button><pre id="result"></pre><script type="module" src="src/masked-page.js"></script>
