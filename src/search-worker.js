@@ -22,15 +22,17 @@ if (typeof self !== "undefined" && typeof self.postMessage === "function") {
 
 listen((msg) => {
   if (msg.kind === "masked") {
+    // 回显查询身份字段，主线程据此确认回复对应当前查询（旧回复不覆盖新查询）。
+    const head = {
+      id: msg.id,
+      rev: msg.rev,
+      pattern: msg.pattern,
+      patternText: msg.patternText,
+    };
     try {
-      post({
-        id: msg.id,
-        rev: msg.rev,
-        pattern: msg.pattern,
-        ...searchMasked(msg.chunks, msg.pattern, msg.options),
-      });
+      post({ ...head, ...searchMasked(msg.chunks, msg.pattern, msg.options) });
     } catch (error) {
-      post({ id: msg.id, rev: msg.rev, error: String(error) });
+      post({ ...head, error: String(error.message ?? error) });
     }
     return;
   }

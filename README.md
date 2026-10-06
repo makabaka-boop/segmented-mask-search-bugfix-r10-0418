@@ -16,7 +16,7 @@ npm run serve          # 或任意静态文件服务器，如 python3 -m http.se
 ## 测试
 
 ```bash
-npm test               # node --test，32 个用例
+npm test               # node --test，41 个用例
 ```
 
 ## 架构
